@@ -1,0 +1,87 @@
+.TH "src/main.c" 3 "Toller" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/main.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <time\&.h>\fP
+.br
+\fR#include <string\&.h>\fP
+.br
+\fR#include 'file_systems/file_systems\&.h'\fP
+.br
+\fR#include 'utils/log/log\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fB_POSIX_C_SOURCE\fP   199309L"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBprint_manual\fP ()"
+.br
+.RI "Print command usage help to standard output\&. "
+.ti -1c
+.RI "int \fBmain\fP (int argc, char *argv[])"
+.br
+.RI "Program entry point\&. "
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define _POSIX_C_SOURCE   199309L"
+
+.PP
+Definition at line \fB18\fP of file \fBmain\&.c\fP\&.
+.SH "Function Documentation"
+.PP 
+.SS "int main (int argc, char * argv[])"
+
+.PP
+Program entry point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIargc\fP Number of command-line arguments\&. 
+.br
+\fIargv\fP Command-line argument vector\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+int Returns 0 on success, 1 for unknown arguments\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB46\fP of file \fBmain\&.c\fP\&.
+.SS "void print_manual ()"
+
+.PP
+Print command usage help to standard output\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.PP
+Definition at line \fB32\fP of file \fBmain\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Toller from the source code\&.

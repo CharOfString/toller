@@ -21,6 +21,9 @@
 #include <time.h>
 #include <string.h>
 
+#include "file_systems/file_systems.h"
+#include "utils/log/log.h"
+
 /**
  * @brief Print command usage help to standard output.
  * @param None
@@ -30,6 +33,7 @@ void print_manual() {
 	fprintf(stdout, "Toller (Experimental)\n");
 	fprintf(stdout, "Useage: \n");
 	fprintf(stdout, "\t--help, -h\tShow this help message.\n");
+	fprintf(stdout, "\t--init, -i\tInitialize Toller for first run.\n");
 }
 
 /**
@@ -48,8 +52,11 @@ int main(int argc, char *argv[]) {
 	if (strcmp(argv[1], "--help") == 0 || strcmp(argv[1], "-h") == 0) {
 		print_manual();
 		return 0;
+	} else if (strcmp(argv[1], "--init") == 0 || strcmp(argv[1], "-i") == 0) {
+		init_toller();
+		return 0;
 	} else {
-		fprintf(stderr, "Unknown argument: %s.\n", argv[1]);
+		write_log_with_tag(LOG_ERROR, "Main", "Unknown argument", "%s.", argv[1]);
 		print_manual();
 		return 1;
 	}

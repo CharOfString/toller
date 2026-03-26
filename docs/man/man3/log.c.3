@@ -1,0 +1,158 @@
+.TH "src/utils/log/log.c" 3 "Toller" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/utils/log/log.c
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <stdio\&.h>\fP
+.br
+\fR#include <string\&.h>\fP
+.br
+\fR#include <stdarg\&.h>\fP
+.br
+\fR#include 'log\&.h'\fP
+.br
+\fR#include 'ansi_escape_code_def\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBprint_level_prefix\fP (\fBlog_level_t\fP level)"
+.br
+.RI "Print the colored log level to stdout/stderr\&. "
+.ti -1c
+.RI "void \fBwrite_log\fP (\fBlog_level_t\fP level, const char *content,\&.\&.\&.)"
+.br
+.RI "Print the log content to stdout/stderr\&. "
+.ti -1c
+.RI "void \fBwrite_log_with_title\fP (\fBlog_level_t\fP level, const char *title, const char *content,\&.\&.\&.)"
+.br
+.RI "Print the log title and content to stdout/stderr\&. "
+.ti -1c
+.RI "void \fBwrite_log_with_tag\fP (\fBlog_level_t\fP level, const char *tag, const char *title, const char *content,\&.\&.\&.)"
+.br
+.RI "Print the log tag, title and content to stdout/stderr\&. "
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void print_level_prefix (\fBlog_level_t\fP level)"
+
+.PP
+Print the colored log level to stdout/stderr\&. This is an internal function\&. It prints the log header (e\&.g\&. \fR\fP[INFO]) to \fRstdout\fP (or \fRstderr\fP, if the log level is \fRLOG_ERROR\fP\&.) These headers are colored using ANSI escape codes
+
+.PP
+\fBSee also\fP
+.RS 4
+\fBsrc/utils/log/ansi_escape_code_def\&.h\fP for the color definitions\&.
+.RE
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP (\fBlog_level_t\fP) The log level\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.PP
+Definition at line \fB38\fP of file \fBlog\&.c\fP\&.
+.SS "void write_log (\fBlog_level_t\fP level, const char * content,  \&.\&.\&.)"
+
+.PP
+Print the log content to stdout/stderr\&. This function outputs the log message with the approate header\&. e\&.g\&. [INFO] Hello\&.
+
+.PP
+If the log level is \fRLOG_ERROR\fP, the message will be printed to \fRstderr\fP\&. Otherwise the log is printed through \fRstdout\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP (\fBlog_level_t\fP) The log level\&. 
+.br
+\fIcontent\fP (const char*) The log message\&. 
+.br
+\fI\&.\&.\&.\fP (variadic) Optional format arguments\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.PP
+Definition at line \fB83\fP of file \fBlog\&.c\fP\&.
+.SS "void write_log_with_tag (\fBlog_level_t\fP level, const char * tag, const char * title, const char * content,  \&.\&.\&.)"
+
+.PP
+Print the log tag, title and content to stdout/stderr\&. This function outputs the log tag, title and message with the approate header\&. e\&.g\&. [INFO] Main - Greetings: Hello\&.
+
+.PP
+In the example above, "Main" is the tag, "Greetings" is the title and "Hello\&." is the message body\&.
+
+.PP
+If the log level is \fRLOG_ERROR\fP, the message will be printed to \fRstderr\fP\&. Otherwise the log is printed through \fRstdout\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP (\fBlog_level_t\fP) The log level\&. 
+.br
+\fItag\fP (const char*) The log tag\&. 
+.br
+\fItitle\fP (const char*) The log title\&. 
+.br
+\fIcontent\fP (const char*) The log message\&. 
+.br
+\fI\&.\&.\&.\fP (variadic) Optional format arguments\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.PP
+Definition at line \fB146\fP of file \fBlog\&.c\fP\&.
+.SS "void write_log_with_title (\fBlog_level_t\fP level, const char * title, const char * content,  \&.\&.\&.)"
+
+.PP
+Print the log title and content to stdout/stderr\&. This function outputs the log title and message with the approate header\&. e\&.g\&. [INFO] Greetings: Hello\&.
+
+.PP
+In the example above, "Greetings" is the title and "Hello\&." is the message body\&.
+
+.PP
+If the log level is \fRLOG_ERROR\fP, the message will be printed to \fRstderr\fP\&. Otherwise the log is printed through \fRstdout\fP\&.
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIlevel\fP (\fBlog_level_t\fP) The log level\&. 
+.br
+\fItitle\fP (const char*) The log title\&. 
+.br
+\fIcontent\fP (const char*) The log message\&. 
+.br
+\fI\&.\&.\&.\fP (variadic) Optional format arguments\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+void 
+.RE
+.PP
+
+.PP
+Definition at line \fB111\fP of file \fBlog\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Toller from the source code\&.

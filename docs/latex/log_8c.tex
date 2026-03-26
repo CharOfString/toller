@@ -1,0 +1,150 @@
+\doxysection{src/utils/log/log.c File Reference}
+\hypertarget{log_8c}{}\label{log_8c}\index{src/utils/log/log.c@{src/utils/log/log.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdarg.\+h$>$}\newline
+{\ttfamily \#include "{}log.\+h"{}}\newline
+{\ttfamily \#include "{}ansi\+\_\+escape\+\_\+code\+\_\+def.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log_8c_afe5a6ac031954f1e9b8b17e18ec483c0}{print\+\_\+level\+\_\+prefix}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level)
+\begin{DoxyCompactList}\small\item\em Print the colored log level to stdout/stderr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8c_a8ed8b87183cea9a8680b54df7b4dd174}{write\+\_\+log}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}content,...)
+\begin{DoxyCompactList}\small\item\em Print the log content to stdout/stderr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8c_aa9aaee755c8ba6cc3fd9e7372e985d97}{write\+\_\+log\+\_\+with\+\_\+title}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}title, const char \texorpdfstring{$\ast$}{*}content,...)
+\begin{DoxyCompactList}\small\item\em Print the log title and content to stdout/stderr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8c_afc95ad5be5f3ab847baf7855d2478e75}{write\+\_\+log\+\_\+with\+\_\+tag}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}tag, const char \texorpdfstring{$\ast$}{*}title, const char \texorpdfstring{$\ast$}{*}content,...)
+\begin{DoxyCompactList}\small\item\em Print the log tag, title and content to stdout/stderr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{log_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{log_8c_afe5a6ac031954f1e9b8b17e18ec483c0}\index{log.c@{log.c}!print\_level\_prefix@{print\_level\_prefix}}
+\index{print\_level\_prefix@{print\_level\_prefix}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{print\_level\_prefix()}{print\_level\_prefix()}}
+{\footnotesize\ttfamily \label{log_8c_afe5a6ac031954f1e9b8b17e18ec483c0} 
+void print\+\_\+level\+\_\+prefix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{}\end{DoxyParamCaption})}
+
+
+
+Print the colored log level to stdout/stderr. 
+
+This is an internal function. It prints the log header (e.\+g. {\ttfamily }\mbox{[}INFO\mbox{]}) to {\ttfamily stdout} (or {\ttfamily stderr}, if the log level is {\ttfamily LOG\+\_\+\+ERROR}.) These headers are colored using ANSI escape codes
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{ansi__escape__code__def_8h}{src/utils/log/ansi\+\_\+escape\+\_\+code\+\_\+def.\+h} for the color definitions.
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00038}{38}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+
+\Hypertarget{log_8c_a8ed8b87183cea9a8680b54df7b4dd174}\index{log.c@{log.c}!write\_log@{write\_log}}
+\index{write\_log@{write\_log}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{write\_log()}{write\_log()}}
+{\footnotesize\ttfamily \label{log_8c_a8ed8b87183cea9a8680b54df7b4dd174} 
+void write\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Print the log content to stdout/stderr. 
+
+This function outputs the log message with the approate header. e.\+g. \mbox{[}INFO\mbox{]} Hello.
+
+If the log level is {\ttfamily LOG\+\_\+\+ERROR}, the message will be printed to {\ttfamily stderr}. Otherwise the log is printed through {\ttfamily stdout}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+{\em content} & (const char\texorpdfstring{$\ast$}{*}) The log message. \\
+\hline
+{\em ...} & (variadic) Optional format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00083}{83}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+
+\Hypertarget{log_8c_afc95ad5be5f3ab847baf7855d2478e75}\index{log.c@{log.c}!write\_log\_with\_tag@{write\_log\_with\_tag}}
+\index{write\_log\_with\_tag@{write\_log\_with\_tag}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{write\_log\_with\_tag()}{write\_log\_with\_tag()}}
+{\footnotesize\ttfamily \label{log_8c_afc95ad5be5f3ab847baf7855d2478e75} 
+void write\+\_\+log\+\_\+with\+\_\+tag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{tag}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{title}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Print the log tag, title and content to stdout/stderr. 
+
+This function outputs the log tag, title and message with the approate header. e.\+g. \mbox{[}INFO\mbox{]} Main -\/ Greetings\+: Hello.
+
+In the example above, "{}\+Main"{} is the tag, "{}\+Greetings"{} is the title and "{}\+Hello."{} is the message body.
+
+If the log level is {\ttfamily LOG\+\_\+\+ERROR}, the message will be printed to {\ttfamily stderr}. Otherwise the log is printed through {\ttfamily stdout}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+{\em tag} & (const char\texorpdfstring{$\ast$}{*}) The log tag. \\
+\hline
+{\em title} & (const char\texorpdfstring{$\ast$}{*}) The log title. \\
+\hline
+{\em content} & (const char\texorpdfstring{$\ast$}{*}) The log message. \\
+\hline
+{\em ...} & (variadic) Optional format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00146}{146}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+
+\Hypertarget{log_8c_aa9aaee755c8ba6cc3fd9e7372e985d97}\index{log.c@{log.c}!write\_log\_with\_title@{write\_log\_with\_title}}
+\index{write\_log\_with\_title@{write\_log\_with\_title}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{write\_log\_with\_title()}{write\_log\_with\_title()}}
+{\footnotesize\ttfamily \label{log_8c_aa9aaee755c8ba6cc3fd9e7372e985d97} 
+void write\+\_\+log\+\_\+with\+\_\+title (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{title}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Print the log title and content to stdout/stderr. 
+
+This function outputs the log title and message with the approate header. e.\+g. \mbox{[}INFO\mbox{]} Greetings\+: Hello.
+
+In the example above, "{}\+Greetings"{} is the title and "{}\+Hello."{} is the message body.
+
+If the log level is {\ttfamily LOG\+\_\+\+ERROR}, the message will be printed to {\ttfamily stderr}. Otherwise the log is printed through {\ttfamily stdout}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+{\em title} & (const char\texorpdfstring{$\ast$}{*}) The log title. \\
+\hline
+{\em content} & (const char\texorpdfstring{$\ast$}{*}) The log message. \\
+\hline
+{\em ...} & (variadic) Optional format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00111}{111}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+

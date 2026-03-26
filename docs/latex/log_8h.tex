@@ -1,0 +1,162 @@
+\doxysection{src/utils/log/log.h File Reference}
+\hypertarget{log_8h}{}\label{log_8h}\index{src/utils/log/log.h@{src/utils/log/log.h}}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} \{ \mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1da6e98ff471e3ce6c4ef2d75c37ee51837}{LOG\+\_\+\+INFO}}
+, \mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1da746c53b13e16f15d1d885f75efaf58b1}{LOG\+\_\+\+OK}}
+, \mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1da8f6fe15bfe15104da6d1b360194a5400}{LOG\+\_\+\+WARNING}}
+, \mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1da230506cce5c68c3bac5a821c42ed3473}{LOG\+\_\+\+ERROR}}
+ \}
+\begin{DoxyCompactList}\small\item\em Log level used to control output style and destination stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log_8h_a8ed8b87183cea9a8680b54df7b4dd174}{write\+\_\+log}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}content,...)
+\begin{DoxyCompactList}\small\item\em Print the log content to stdout/stderr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8h_aa9aaee755c8ba6cc3fd9e7372e985d97}{write\+\_\+log\+\_\+with\+\_\+title}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}title, const char \texorpdfstring{$\ast$}{*}content,...)
+\begin{DoxyCompactList}\small\item\em Print the log title and content to stdout/stderr. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{log_8h_afc95ad5be5f3ab847baf7855d2478e75}{write\+\_\+log\+\_\+with\+\_\+tag}} (\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}} level, const char \texorpdfstring{$\ast$}{*}tag, const char \texorpdfstring{$\ast$}{*}title, const char \texorpdfstring{$\ast$}{*}content,...)
+\begin{DoxyCompactList}\small\item\em Print the log tag, title and content to stdout/stderr. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-enum-members}
+\Hypertarget{log_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{log_8h_a98121d38a8cf3daf5246a349f912ca1d}\index{log.h@{log.h}!log\_level\_t@{log\_level\_t}}
+\index{log\_level\_t@{log\_level\_t}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{log\_level\_t}{log\_level\_t}}
+{\footnotesize\ttfamily \label{log_8h_a98121d38a8cf3daf5246a349f912ca1d} 
+enum \mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}
+
+
+
+Log level used to control output style and destination stream. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOG\_INFO@{LOG\_INFO}!log.h@{log.h}}\index{log.h@{log.h}!LOG\_INFO@{LOG\_INFO}}}\Hypertarget{log_8h_a98121d38a8cf3daf5246a349f912ca1da6e98ff471e3ce6c4ef2d75c37ee51837}\label{log_8h_a98121d38a8cf3daf5246a349f912ca1da6e98ff471e3ce6c4ef2d75c37ee51837} 
+LOG\+\_\+\+INFO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOG\_OK@{LOG\_OK}!log.h@{log.h}}\index{log.h@{log.h}!LOG\_OK@{LOG\_OK}}}\Hypertarget{log_8h_a98121d38a8cf3daf5246a349f912ca1da746c53b13e16f15d1d885f75efaf58b1}\label{log_8h_a98121d38a8cf3daf5246a349f912ca1da746c53b13e16f15d1d885f75efaf58b1} 
+LOG\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOG\_WARNING@{LOG\_WARNING}!log.h@{log.h}}\index{log.h@{log.h}!LOG\_WARNING@{LOG\_WARNING}}}\Hypertarget{log_8h_a98121d38a8cf3daf5246a349f912ca1da8f6fe15bfe15104da6d1b360194a5400}\label{log_8h_a98121d38a8cf3daf5246a349f912ca1da8f6fe15bfe15104da6d1b360194a5400} 
+LOG\+\_\+\+WARNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LOG\_ERROR@{LOG\_ERROR}!log.h@{log.h}}\index{log.h@{log.h}!LOG\_ERROR@{LOG\_ERROR}}}\Hypertarget{log_8h_a98121d38a8cf3daf5246a349f912ca1da230506cce5c68c3bac5a821c42ed3473}\label{log_8h_a98121d38a8cf3daf5246a349f912ca1da230506cce5c68c3bac5a821c42ed3473} 
+LOG\+\_\+\+ERROR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{log_8h_source_l00026}{26}} of file \mbox{\hyperlink{log_8h_source}{log.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{log_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{log_8h_a8ed8b87183cea9a8680b54df7b4dd174}\index{log.h@{log.h}!write\_log@{write\_log}}
+\index{write\_log@{write\_log}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{write\_log()}{write\_log()}}
+{\footnotesize\ttfamily \label{log_8h_a8ed8b87183cea9a8680b54df7b4dd174} 
+void write\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Print the log content to stdout/stderr. 
+
+This function outputs the log message with the approate header. e.\+g. \mbox{[}INFO\mbox{]} Hello.
+
+If the log level is {\ttfamily LOG\+\_\+\+ERROR}, the message will be printed to {\ttfamily stderr}. Otherwise the log is printed through {\ttfamily stdout}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+{\em content} & (const char\texorpdfstring{$\ast$}{*}) The log message. \\
+\hline
+{\em ...} & (variadic) Optional format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00083}{83}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+
+\Hypertarget{log_8h_afc95ad5be5f3ab847baf7855d2478e75}\index{log.h@{log.h}!write\_log\_with\_tag@{write\_log\_with\_tag}}
+\index{write\_log\_with\_tag@{write\_log\_with\_tag}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{write\_log\_with\_tag()}{write\_log\_with\_tag()}}
+{\footnotesize\ttfamily \label{log_8h_afc95ad5be5f3ab847baf7855d2478e75} 
+void write\+\_\+log\+\_\+with\+\_\+tag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{tag}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{title}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Print the log tag, title and content to stdout/stderr. 
+
+This function outputs the log tag, title and message with the approate header. e.\+g. \mbox{[}INFO\mbox{]} Main -\/ Greetings\+: Hello.
+
+In the example above, "{}\+Main"{} is the tag, "{}\+Greetings"{} is the title and "{}\+Hello."{} is the message body.
+
+If the log level is {\ttfamily LOG\+\_\+\+ERROR}, the message will be printed to {\ttfamily stderr}. Otherwise the log is printed through {\ttfamily stdout}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+{\em tag} & (const char\texorpdfstring{$\ast$}{*}) The log tag. \\
+\hline
+{\em title} & (const char\texorpdfstring{$\ast$}{*}) The log title. \\
+\hline
+{\em content} & (const char\texorpdfstring{$\ast$}{*}) The log message. \\
+\hline
+{\em ...} & (variadic) Optional format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00146}{146}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+
+\Hypertarget{log_8h_aa9aaee755c8ba6cc3fd9e7372e985d97}\index{log.h@{log.h}!write\_log\_with\_title@{write\_log\_with\_title}}
+\index{write\_log\_with\_title@{write\_log\_with\_title}!log.h@{log.h}}
+\doxysubsubsection{\texorpdfstring{write\_log\_with\_title()}{write\_log\_with\_title()}}
+{\footnotesize\ttfamily \label{log_8h_aa9aaee755c8ba6cc3fd9e7372e985d97} 
+void write\+\_\+log\+\_\+with\+\_\+title (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}}}]{level}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{title}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{content}{, }\item[{}]{...}{}\end{DoxyParamCaption})}
+
+
+
+Print the log title and content to stdout/stderr. 
+
+This function outputs the log title and message with the approate header. e.\+g. \mbox{[}INFO\mbox{]} Greetings\+: Hello.
+
+In the example above, "{}\+Greetings"{} is the title and "{}\+Hello."{} is the message body.
+
+If the log level is {\ttfamily LOG\+\_\+\+ERROR}, the message will be printed to {\ttfamily stderr}. Otherwise the log is printed through {\ttfamily stdout}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & (\doxylink{log_8h_a98121d38a8cf3daf5246a349f912ca1d}{log\+\_\+level\+\_\+t}) The log level. \\
+\hline
+{\em title} & (const char\texorpdfstring{$\ast$}{*}) The log title. \\
+\hline
+{\em content} & (const char\texorpdfstring{$\ast$}{*}) The log message. \\
+\hline
+{\em ...} & (variadic) Optional format arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{log_8c_source_l00111}{111}} of file \mbox{\hyperlink{log_8c_source}{log.\+c}}.
+

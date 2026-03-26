@@ -9,9 +9,12 @@ BIN_DIR := bin
 # Target executable
 TARGET := $(BIN_DIR)/toller
 
-# Source files
-SOURCES := $(wildcard $(SRC_DIR)/*.c)
+# Source files - recursively find all .c files in SRC_DIR and subdirectories
+SOURCES := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c $(SRC_DIR)/*/*/*.c)
 OBJECTS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCES))
+
+# Include directories
+INCLUDES := -I$(SRC_DIR) -I$(SRC_DIR)/file_systems -I$(SRC_DIR)/utils/log
 
 # Default target
 .PHONY: all
@@ -23,12 +26,13 @@ $(BUILD_DIR) $(BIN_DIR):
 
 # Link object files to create executable
 $(TARGET): $(OBJECTS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
 	@echo "Build complete: $@"
 
 # Compile source files
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 # Clean build artifacts
 .PHONY: clean
