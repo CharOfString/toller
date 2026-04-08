@@ -15,15 +15,28 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
+#ifndef PATH_HANDLER_H
+#define PATH_HANDLER_H
 
-#include "file_systems.h"
-#include "../path_handler/path_handler.h"
+#define MAX_PATH_LENGTH 4096
 
-int init_toller() {
-    // Placeholder for future initialization code
-    fprintf(stdout, "Initializing Toller file systems...\n");
-    path_query_response_t data_dir = get_system_data_dir();
-    fprintf(stdout, "Data: %s.\n", data_dir.path);
-    return 0;
-}
+#include <string.h>
+
+/**
+ * @brief Struct to hold the response of path query functions.
+ * @details The struct contains a status code to indicate success or failure,
+ *          with a @c status_code of @c 0 indicating succeed and @c -1
+ *          indicating fallback/downgraded performance, and @c -2 indicating
+ *          failure. The @c path member holds the resulting path if found.
+ * 
+ */
+
+typedef struct {
+    int status_code;
+    char* path;
+} path_query_response_t;
+
+/* ---------- Public getters ---------- */
+path_query_response_t get_system_data_dir();
+
+#endif  /* PATH_HANDLER_H */
