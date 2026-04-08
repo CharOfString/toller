@@ -1,0 +1,57 @@
+\doxysection{path\+\_\+query\+\_\+response\+\_\+t Struct Reference}
+\hypertarget{structpath__query__response__t}{}\label{structpath__query__response__t}\index{path\_query\_response\_t@{path\_query\_response\_t}}
+
+
+Struct to hold the response of path query functions.  
+
+
+
+
+{\ttfamily \#include $<$path\+\_\+handler.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structpath__query__response__t_ab3f6e258ca299dd4164d1bc6fc0f98cf}{status\+\_\+code}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structpath__query__response__t_a720a330b5fbaa4b44e8494d670e3c0a1}{path}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Struct to hold the response of path query functions. 
+
+The struct contains a status code to indicate success or failure, with a {\ttfamily status\+\_\+code} of {\ttfamily 0} indicating succeed and {\ttfamily -\/1} indicating fallback/downgraded performance, and {\ttfamily -\/2} indicating failure. The {\ttfamily path} member holds the resulting path if found. 
+
+Definition at line \mbox{\hyperlink{path__handler_8h_source_l00032}{32}} of file \mbox{\hyperlink{path__handler_8h_source}{path\+\_\+handler.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structpath__query__response__t_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structpath__query__response__t_a720a330b5fbaa4b44e8494d670e3c0a1}\index{path\_query\_response\_t@{path\_query\_response\_t}!path@{path}}
+\index{path@{path}!path\_query\_response\_t@{path\_query\_response\_t}}
+\doxysubsubsection{\texorpdfstring{path}{path}}
+{\footnotesize\ttfamily \label{structpath__query__response__t_a720a330b5fbaa4b44e8494d670e3c0a1} 
+char\texorpdfstring{$\ast$}{*} path\+\_\+query\+\_\+response\+\_\+t\+::path}
+
+
+
+Definition at line \mbox{\hyperlink{path__handler_8h_source_l00034}{34}} of file \mbox{\hyperlink{path__handler_8h_source}{path\+\_\+handler.\+h}}.
+
+\Hypertarget{structpath__query__response__t_ab3f6e258ca299dd4164d1bc6fc0f98cf}\index{path\_query\_response\_t@{path\_query\_response\_t}!status\_code@{status\_code}}
+\index{status\_code@{status\_code}!path\_query\_response\_t@{path\_query\_response\_t}}
+\doxysubsubsection{\texorpdfstring{status\_code}{status\_code}}
+{\footnotesize\ttfamily \label{structpath__query__response__t_ab3f6e258ca299dd4164d1bc6fc0f98cf} 
+int path\+\_\+query\+\_\+response\+\_\+t\+::status\+\_\+code}
+
+
+
+Definition at line \mbox{\hyperlink{path__handler_8h_source_l00033}{33}} of file \mbox{\hyperlink{path__handler_8h_source}{path\+\_\+handler.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/utils/path\+\_\+handler/\mbox{\hyperlink{path__handler_8h}{path\+\_\+handler.\+h}}\end{DoxyCompactItemize}

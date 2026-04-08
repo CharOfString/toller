@@ -1,30 +1,36 @@
 var indexSectionsWithContent =
 {
-  0: "_abfilmprw",
-  1: "aflm",
-  2: "impw",
-  3: "l",
-  4: "l",
-  5: "_br"
+  0: "_abfgilmprsw",
+  1: "p",
+  2: "afglmp",
+  3: "gimpw",
+  4: "ps",
+  5: "l",
+  6: "l",
+  7: "_abmr"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "files",
-  2: "functions",
-  3: "enums",
-  4: "enumvalues",
-  5: "defines"
+  1: "classes",
+  2: "files",
+  3: "functions",
+  4: "variables",
+  5: "enums",
+  6: "enumvalues",
+  7: "defines"
 };
 
 var indexSectionLabels =
 {
   0: "All",
-  1: "Files",
-  2: "Functions",
-  3: "Enumerations",
-  4: "Enumerator",
-  5: "Macros"
+  1: "Classes",
+  2: "Files",
+  3: "Functions",
+  4: "Variables",
+  5: "Enumerations",
+  6: "Enumerator",
+  7: "Macros"
 };
 

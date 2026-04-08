@@ -18,8 +18,6 @@
 #ifndef PATH_HANDLER_H
 #define PATH_HANDLER_H
 
-#define MAX_PATH_LENGTH 4096
-
 #include <string.h>
 
 /**
@@ -38,5 +36,6 @@ typedef struct {
 
 /* ---------- Public getters ---------- */
 path_query_response_t get_system_data_dir();
+path_query_response_t get_application_data_dir();
 
 #endif  /* PATH_HANDLER_H */

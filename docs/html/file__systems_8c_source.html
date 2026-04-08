@@ -111,16 +111,22 @@ $(function(){initNavTree('file__systems_8c_source.html','',''); });
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="file__systems_8h.html">file_systems.h</a>&quot;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="foldopen" id="foldopen00022" data-start="{" data-end="}">
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="file__systems_8c.html#aee17cd2ba32f5935f7d3d6ca69fb1e8a">   22</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="file__systems_8c.html#aee17cd2ba32f5935f7d3d6ca69fb1e8a">init_toller</a>() {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// Placeholder for future initialization code</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    fprintf(stdout, <span class="stringliteral">&quot;Initializing Toller file systems...\n&quot;</span>);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;../path_handler/path_handler.h&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="}">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="file__systems_8c.html#aee17cd2ba32f5935f7d3d6ca69fb1e8a">   23</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="file__systems_8c.html#aee17cd2ba32f5935f7d3d6ca69fb1e8a">init_toller</a>() {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="comment">// Placeholder for future initialization code</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    fprintf(stdout, <span class="stringliteral">&quot;Initializing Toller file systems...\n&quot;</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <a class="code hl_struct" href="structpath__query__response__t.html">path_query_response_t</a> data_dir = <a class="code hl_function" href="path__handler_8c.html#a93e7e07457d5c634c16df7d086b4b396">get_system_data_dir</a>();</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    fprintf(stdout, <span class="stringliteral">&quot;Data: %s.\n&quot;</span>, data_dir.<a class="code hl_variable" href="structpath__query__response__t.html#a720a330b5fbaa4b44e8494d670e3c0a1">path</a>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
 </div>
-<div class="ttc" id="afile__systems_8c_html_aee17cd2ba32f5935f7d3d6ca69fb1e8a"><div class="ttname"><a href="file__systems_8c.html#aee17cd2ba32f5935f7d3d6ca69fb1e8a">init_toller</a></div><div class="ttdeci">int init_toller()</div><div class="ttdef"><b>Definition</b> <a href="#l00022">file_systems.c:22</a></div></div>
+<div class="ttc" id="afile__systems_8c_html_aee17cd2ba32f5935f7d3d6ca69fb1e8a"><div class="ttname"><a href="file__systems_8c.html#aee17cd2ba32f5935f7d3d6ca69fb1e8a">init_toller</a></div><div class="ttdeci">int init_toller()</div><div class="ttdef"><b>Definition</b> <a href="#l00023">file_systems.c:23</a></div></div>
 <div class="ttc" id="afile__systems_8h_html"><div class="ttname"><a href="file__systems_8h.html">file_systems.h</a></div></div>
+<div class="ttc" id="apath__handler_8c_html_a93e7e07457d5c634c16df7d086b4b396"><div class="ttname"><a href="path__handler_8c.html#a93e7e07457d5c634c16df7d086b4b396">get_system_data_dir</a></div><div class="ttdeci">path_query_response_t get_system_data_dir()</div><div class="ttdoc">Get the system data directory path.</div><div class="ttdef"><b>Definition</b> <a href="path__handler_8c_source.html#l00060">path_handler.c:60</a></div></div>
+<div class="ttc" id="astructpath__query__response__t_html"><div class="ttname"><a href="structpath__query__response__t.html">path_query_response_t</a></div><div class="ttdoc">Struct to hold the response of path query functions.</div><div class="ttdef"><b>Definition</b> <a href="path__handler_8h_source.html#l00032">path_handler.h:32</a></div></div>
+<div class="ttc" id="astructpath__query__response__t_html_a720a330b5fbaa4b44e8494d670e3c0a1"><div class="ttname"><a href="structpath__query__response__t.html#a720a330b5fbaa4b44e8494d670e3c0a1">path_query_response_t::path</a></div><div class="ttdeci">char * path</div><div class="ttdef"><b>Definition</b> <a href="path__handler_8h_source.html#l00034">path_handler.h:34</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 </div><!-- container -->

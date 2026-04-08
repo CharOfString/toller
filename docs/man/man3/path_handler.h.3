@@ -1,0 +1,60 @@
+.TH "src/utils/path_handler/path_handler.h" 3 "Toller" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+src/utils/path_handler/path_handler.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <string\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBpath_query_response_t\fP"
+.br
+.RI "Struct to hold the response of path query functions\&. "
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpath_query_response_t\fP \fBget_system_data_dir\fP ()"
+.br
+.RI "Get the system data directory path\&. "
+.ti -1c
+.RI "\fBpath_query_response_t\fP \fBget_application_data_dir\fP ()"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "\fBpath_query_response_t\fP get_application_data_dir ()"
+
+.SS "\fBpath_query_response_t\fP get_system_data_dir ()"
+
+.PP
+Get the system data directory path\&. The function first gets \fRXDG_DATA_HOME\fP variable, and returns if it is set\&. If not, it will try to get \fRHOME\fP variable and return the path as \fRHOME/\fP\&.local/share if avaliable\&. If failed, then it will return \fRNULL\fP in the path part\&. 
+.PP
+\fBNote\fP
+.RS 4
+The function is actually returning a struct, not just a string\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+The struct \fBpath_query_response_t\fP defined in \fBpath_handler\&.h\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+(\fBpath_query_response_t\fP) A struct containing status code and system data directory path (if found)\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB60\fP of file \fBpath_handler\&.c\fP\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Toller from the source code\&.

@@ -1,0 +1,49 @@
+\doxysection{src/utils/path\+\_\+handler/path\+\_\+handler.h File Reference}
+\hypertarget{path__handler_8h}{}\label{path__handler_8h}\index{src/utils/path\_handler/path\_handler.h@{src/utils/path\_handler/path\_handler.h}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Struct to hold the response of path query functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t}} \mbox{\hyperlink{path__handler_8h_a93e7e07457d5c634c16df7d086b4b396}{get\+\_\+system\+\_\+data\+\_\+dir}} ()
+\begin{DoxyCompactList}\small\item\em Get the system data directory path. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t}} \mbox{\hyperlink{path__handler_8h_abd4eed9b4146dcbdfa8f00022aa0f4da}{get\+\_\+application\+\_\+data\+\_\+dir}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{path__handler_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{path__handler_8h_abd4eed9b4146dcbdfa8f00022aa0f4da}\index{path\_handler.h@{path\_handler.h}!get\_application\_data\_dir@{get\_application\_data\_dir}}
+\index{get\_application\_data\_dir@{get\_application\_data\_dir}!path\_handler.h@{path\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_application\_data\_dir()}{get\_application\_data\_dir()}}
+{\footnotesize\ttfamily \label{path__handler_8h_abd4eed9b4146dcbdfa8f00022aa0f4da} 
+\mbox{\hyperlink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t}} get\+\_\+application\+\_\+data\+\_\+dir (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{path__handler_8h_a93e7e07457d5c634c16df7d086b4b396}\index{path\_handler.h@{path\_handler.h}!get\_system\_data\_dir@{get\_system\_data\_dir}}
+\index{get\_system\_data\_dir@{get\_system\_data\_dir}!path\_handler.h@{path\_handler.h}}
+\doxysubsubsection{\texorpdfstring{get\_system\_data\_dir()}{get\_system\_data\_dir()}}
+{\footnotesize\ttfamily \label{path__handler_8h_a93e7e07457d5c634c16df7d086b4b396} 
+\mbox{\hyperlink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t}} get\+\_\+system\+\_\+data\+\_\+dir (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Get the system data directory path. 
+
+The function first gets {\ttfamily XDG\+\_\+\+DATA\+\_\+\+HOME} variable, and returns if it is set. If not, it will try to get {\ttfamily HOME} variable and return the path as {\ttfamily HOME/}.local/share if avaliable. If failed, then it will return {\ttfamily NULL} in the path part. \begin{DoxyNote}{Note}
+The function is actually returning a struct, not just a string. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+The struct \doxylink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t} defined in \doxylink{path__handler_8h}{path\+\_\+handler.\+h} 
+\end{DoxySeeAlso}
+\begin{DoxyReturn}{Returns}
+(\doxylink{structpath__query__response__t}{path\+\_\+query\+\_\+response\+\_\+t}) A struct containing status code and system data directory path (if found). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{path__handler_8c_source_l00060}{60}} of file \mbox{\hyperlink{path__handler_8c_source}{path\+\_\+handler.\+c}}.
+

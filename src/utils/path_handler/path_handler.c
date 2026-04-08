@@ -21,6 +21,7 @@
 
 #include "path_handler.h"
 #include "../log/log.h"
+#include "../global_vars/global_vars.h"
 
 static char* duplicate_string(const char* src) {
     size_t len;

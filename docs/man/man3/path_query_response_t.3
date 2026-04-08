@@ -1,0 +1,42 @@
+.TH "path_query_response_t" 3 "Toller" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+path_query_response_t \- Struct to hold the response of path query functions\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <path_handler\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBstatus_code\fP"
+.br
+.ti -1c
+.RI "char * \fBpath\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Struct to hold the response of path query functions\&. 
+
+The struct contains a status code to indicate success or failure, with a \fRstatus_code\fP of \fR0\fP indicating succeed and \fR-1\fP indicating fallback/downgraded performance, and \fR-2\fP indicating failure\&. The \fRpath\fP member holds the resulting path if found\&. 
+.PP
+Definition at line \fB32\fP of file \fBpath_handler\&.h\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "char* path_query_response_t::path"
+
+.PP
+Definition at line \fB34\fP of file \fBpath_handler\&.h\fP\&.
+.SS "int path_query_response_t::status_code"
+
+.PP
+Definition at line \fB33\fP of file \fBpath_handler\&.h\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for Toller from the source code\&.

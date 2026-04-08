@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['log_2ec_0',['log.c',['../log_8c.html',1,'']]],
-  ['log_2eh_1',['log.h',['../log_8h.html',1,'']]]
+  ['global_5fvars_2eh_0',['global_vars.h',['../global__vars_8h.html',1,'']]]
 ];

@@ -22,11 +22,14 @@
 \DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
 \DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00019}00019\ }
 \DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{file__systems_8h}{file\_systems.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00021}00021\ }
-\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00022}\mbox{\hyperlink{file__systems_8c_aee17cd2ba32f5935f7d3d6ca69fb1e8a}{00022}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__systems_8c_aee17cd2ba32f5935f7d3d6ca69fb1e8a}{init\_toller}}()\ \{}
-\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00023}00023\ \ \ \ \ \textcolor{comment}{//\ Placeholder\ for\ future\ initialization\ code}}
-\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00024}00024\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Initializing\ Toller\ file\ systems...\(\backslash\)n"{}});}
-\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00025}00025\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
-\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00026}00026\ \}}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}../path\_handler/path\_handler.h"{}}}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00023}\mbox{\hyperlink{file__systems_8c_aee17cd2ba32f5935f7d3d6ca69fb1e8a}{00023}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{file__systems_8c_aee17cd2ba32f5935f7d3d6ca69fb1e8a}{init\_toller}}()\ \{}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00024}00024\ \ \ \ \ \textcolor{comment}{//\ Placeholder\ for\ future\ initialization\ code}}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00025}00025\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Initializing\ Toller\ file\ systems...\(\backslash\)n"{}});}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00026}00026\ \ \ \ \ \mbox{\hyperlink{structpath__query__response__t}{path\_query\_response\_t}}\ data\_dir\ =\ \mbox{\hyperlink{path__handler_8c_a93e7e07457d5c634c16df7d086b4b396}{get\_system\_data\_dir}}();}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00027}00027\ \ \ \ \ fprintf(stdout,\ \textcolor{stringliteral}{"{}Data:\ \%s.\(\backslash\)n"{}},\ data\_dir.\mbox{\hyperlink{structpath__query__response__t_a720a330b5fbaa4b44e8494d670e3c0a1}{path}});}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{file__systems_8c_source_l00029}00029\ \}}
 
 \end{DoxyCode}
