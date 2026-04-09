@@ -94,8 +94,10 @@ $(function(){initNavTree('path__handler_8c.html','',''); });
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;sys/stat.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="path__handler_8h_source.html">path_handler.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="log_8h_source.html">../log/log.h</a>&quot;</code><br />
+<code>#include &quot;../global_vars/global_vars.h&quot;</code><br />
 </div>
 <p><a href="path__handler_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -103,8 +105,84 @@ $(function(){initNavTree('path__handler_8c.html','',''); });
 Functions</h2></td></tr>
 <tr class="memitem:a93e7e07457d5c634c16df7d086b4b396" id="r_a93e7e07457d5c634c16df7d086b4b396"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93e7e07457d5c634c16df7d086b4b396">get_system_data_dir</a> ()</td></tr>
 <tr class="memdesc:a93e7e07457d5c634c16df7d086b4b396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the system data directory path.  <br /></td></tr>
+<tr class="memitem:abd4eed9b4146dcbdfa8f00022aa0f4da" id="r_abd4eed9b4146dcbdfa8f00022aa0f4da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd4eed9b4146dcbdfa8f00022aa0f4da">get_application_data_dir</a> ()</td></tr>
+<tr class="memdesc:abd4eed9b4146dcbdfa8f00022aa0f4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the application data dir object.  <br /></td></tr>
+<tr class="memitem:a52f731772143caf1d576a92c9fa22762" id="r_a52f731772143caf1d576a92c9fa22762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52f731772143caf1d576a92c9fa22762">get_system_config_dir</a> ()</td></tr>
+<tr class="memdesc:a52f731772143caf1d576a92c9fa22762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the system config directory path.  <br /></td></tr>
+<tr class="memitem:a607eee96b713649a874911d33132b001" id="r_a607eee96b713649a874911d33132b001"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a607eee96b713649a874911d33132b001">get_application_config_dir</a> ()</td></tr>
+<tr class="memdesc:a607eee96b713649a874911d33132b001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the application config directory path.  <br /></td></tr>
 </table>
 <a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a607eee96b713649a874911d33132b001" name="a607eee96b713649a874911d33132b001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a607eee96b713649a874911d33132b001">&#9670;&#160;</a></span>get_application_config_dir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a> get_application_config_dir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the application config directory path. </p>
+<p>The function first gets the system config directory path, then appends the application name (to lower) to it and then checks the existence of the path. If the path does not exist, it will try to create it. </p><dl class="section note"><dt>Note</dt><dd>If the path does NOT exist, but the system config directory is, avaliable, then the function will try to create it. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(<a class="el" href="structpath__query__response__t.html" title="Struct to hold the response of path query functions.">path_query_response_t</a>) A struct containing status code and application config directory path (if found) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="path__handler_8c_source.html#l00263">263</a> of file <a class="el" href="path__handler_8c_source.html">path_handler.c</a>.</p>
+
+</div>
+</div>
+<a id="abd4eed9b4146dcbdfa8f00022aa0f4da" name="abd4eed9b4146dcbdfa8f00022aa0f4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd4eed9b4146dcbdfa8f00022aa0f4da">&#9670;&#160;</a></span>get_application_data_dir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a> get_application_data_dir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the application data dir object. </p>
+<p>The function first gets the system data directory path, then appends the application name (to lower) to it and then checks the existence of the path. If the path does not exist, it will try to create it. </p><dl class="section note"><dt>Note</dt><dd>If the path does NOT exist, but the system data directory is, avaliable, then the function will try to create it. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(<a class="el" href="structpath__query__response__t.html" title="Struct to hold the response of path query functions.">path_query_response_t</a>) A struct containing status code and application data directory path (if found). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="path__handler_8c_source.html#l00124">124</a> of file <a class="el" href="path__handler_8c_source.html">path_handler.c</a>.</p>
+
+</div>
+</div>
+<a id="a52f731772143caf1d576a92c9fa22762" name="a52f731772143caf1d576a92c9fa22762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52f731772143caf1d576a92c9fa22762">&#9670;&#160;</a></span>get_system_config_dir()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structpath__query__response__t.html">path_query_response_t</a> get_system_config_dir </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the system config directory path. </p>
+<p>The function first gets <code>XDG_CONFIG_HOME</code> variable, and returns if it is set. If not, it will try to get <code>HOME</code> variable and return the path as <code>HOME/</code>.config if avaliable. If failed, then it will return <code>NULL</code> in the path part. </p><dl class="section note"><dt>Note</dt><dd>The function is actually returning a struct, not just a string. </dd></dl>
+<dl class="section see"><dt>See also</dt><dd>The struct <a class="el" href="structpath__query__response__t.html">path_query_response_t</a> defined in <a class="el" href="path__handler_8h.html">path_handler.h</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>(<a class="el" href="structpath__query__response__t.html" title="Struct to hold the response of path query functions.">path_query_response_t</a>) A struct containing status code and system config directory path (if found). </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="path__handler_8c_source.html#l00208">208</a> of file <a class="el" href="path__handler_8c_source.html">path_handler.c</a>.</p>
+
+</div>
+</div>
 <a id="a93e7e07457d5c634c16df7d086b4b396" name="a93e7e07457d5c634c16df7d086b4b396"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a93e7e07457d5c634c16df7d086b4b396">&#9670;&#160;</a></span>get_system_data_dir()</h2>
 
@@ -125,7 +203,7 @@ Functions</h2></td></tr>
 <dl class="section see"><dt>See also</dt><dd>The struct <a class="el" href="structpath__query__response__t.html">path_query_response_t</a> defined in <a class="el" href="path__handler_8h.html">path_handler.h</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>(<a class="el" href="structpath__query__response__t.html" title="Struct to hold the response of path query functions.">path_query_response_t</a>) A struct containing status code and system data directory path (if found). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="path__handler_8c_source.html#l00060">60</a> of file <a class="el" href="path__handler_8c_source.html">path_handler.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="path__handler_8c_source.html#l00069">69</a> of file <a class="el" href="path__handler_8c_source.html">path_handler.c</a>.</p>
 
 </div>
 </div>

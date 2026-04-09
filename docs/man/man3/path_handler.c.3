@@ -12,9 +12,13 @@ src/utils/path_handler/path_handler.c
 .br
 \fR#include <string\&.h>\fP
 .br
+\fR#include <sys/stat\&.h>\fP
+.br
 \fR#include 'path_handler\&.h'\fP
 .br
 \fR#include '\&.\&./log/log\&.h'\fP
+.br
+\fR#include '\&.\&./global_vars/global_vars\&.h'\fP
 .br
 
 .SS "Functions"
@@ -24,9 +28,80 @@ src/utils/path_handler/path_handler.c
 .RI "\fBpath_query_response_t\fP \fBget_system_data_dir\fP ()"
 .br
 .RI "Get the system data directory path\&. "
+.ti -1c
+.RI "\fBpath_query_response_t\fP \fBget_application_data_dir\fP ()"
+.br
+.RI "Get the application data dir object\&. "
+.ti -1c
+.RI "\fBpath_query_response_t\fP \fBget_system_config_dir\fP ()"
+.br
+.RI "Get the system config directory path\&. "
+.ti -1c
+.RI "\fBpath_query_response_t\fP \fBget_application_config_dir\fP ()"
+.br
+.RI "Get the application config directory path\&. "
 .in -1c
 .SH "Function Documentation"
 .PP 
+.SS "\fBpath_query_response_t\fP get_application_config_dir ()"
+
+.PP
+Get the application config directory path\&. The function first gets the system config directory path, then appends the application name (to lower) to it and then checks the existence of the path\&. If the path does not exist, it will try to create it\&. 
+.PP
+\fBNote\fP
+.RS 4
+If the path does NOT exist, but the system config directory is, avaliable, then the function will try to create it\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+(\fBpath_query_response_t\fP) A struct containing status code and application config directory path (if found) 
+.RE
+.PP
+
+.PP
+Definition at line \fB263\fP of file \fBpath_handler\&.c\fP\&.
+.SS "\fBpath_query_response_t\fP get_application_data_dir ()"
+
+.PP
+Get the application data dir object\&. The function first gets the system data directory path, then appends the application name (to lower) to it and then checks the existence of the path\&. If the path does not exist, it will try to create it\&. 
+.PP
+\fBNote\fP
+.RS 4
+If the path does NOT exist, but the system data directory is, avaliable, then the function will try to create it\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+(\fBpath_query_response_t\fP) A struct containing status code and application data directory path (if found)\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB124\fP of file \fBpath_handler\&.c\fP\&.
+.SS "\fBpath_query_response_t\fP get_system_config_dir ()"
+
+.PP
+Get the system config directory path\&. The function first gets \fRXDG_CONFIG_HOME\fP variable, and returns if it is set\&. If not, it will try to get \fRHOME\fP variable and return the path as \fRHOME/\fP\&.config if avaliable\&. If failed, then it will return \fRNULL\fP in the path part\&. 
+.PP
+\fBNote\fP
+.RS 4
+The function is actually returning a struct, not just a string\&. 
+.RE
+.PP
+\fBSee also\fP
+.RS 4
+The struct \fBpath_query_response_t\fP defined in \fBpath_handler\&.h\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+(\fBpath_query_response_t\fP) A struct containing status code and system config directory path (if found)\&. 
+.RE
+.PP
+
+.PP
+Definition at line \fB208\fP of file \fBpath_handler\&.c\fP\&.
 .SS "\fBpath_query_response_t\fP get_system_data_dir ()"
 
 .PP
@@ -49,7 +124,7 @@ The struct \fBpath_query_response_t\fP defined in \fBpath_handler\&.h\fP
 .PP
 
 .PP
-Definition at line \fB60\fP of file \fBpath_handler\&.c\fP\&.
+Definition at line \fB69\fP of file \fBpath_handler\&.c\fP\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for Toller from the source code\&.

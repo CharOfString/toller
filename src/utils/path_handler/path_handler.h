@@ -36,6 +36,8 @@ typedef struct {
 
 /* ---------- Public getters ---------- */
 path_query_response_t get_system_data_dir();
+path_query_response_t get_system_config_dir();
 path_query_response_t get_application_data_dir();
+path_query_response_t get_application_config_dir();
 
 #endif  /* PATH_HANDLER_H */

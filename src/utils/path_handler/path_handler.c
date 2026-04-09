@@ -18,11 +18,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 #include "path_handler.h"
 #include "../log/log.h"
 #include "../global_vars/global_vars.h"
 
+/**
+ * @brief Duplicate a string with memory allocation.
+ * 
+ * @param src  (const char*) The source string to duplicate.
+ * @return (char*) A pointer to duplicated string on success.
+ */
 static char* duplicate_string(const char* src) {
     size_t len;
     char* dst;
@@ -44,6 +51,7 @@ static char* duplicate_string(const char* src) {
     memcpy(dst, src, len);
     return dst;
 }
+
 
 /**
  * @brief Get the system data directory path.
@@ -72,7 +80,7 @@ path_query_response_t get_system_data_dir() {
             int written = snprintf(temp_path, sizeof(temp_path),
                 "%s/.local/share", home_dir);
 
-            if (written < 0 || written >= (int)sizeof(temp_path)) {
+            if (written < 0 || written >= (int) sizeof(temp_path)) {
                 // While exceeding the max buffer size
                 write_log_with_tag(LOG_ERROR, "Path Handler",
                     "Error getting path",
@@ -97,4 +105,227 @@ path_query_response_t get_system_data_dir() {
             return response;
         }
     }
+}
+
+
+/**
+ * @brief Get the application data dir object
+ * 
+ * @details The function first gets the system data directory path, then
+ *          appends the application name (to lower) to it and then checks the
+ *          existence of the path. If the path does not exist, it will try to
+ *          create it.
+ * @note If the path does NOT exist, but the system data directory is,
+ *       avaliable, then the function will try to create it.
+ * @return (path_query_response_t) A struct containing status code and 
+ *                                 application data directory path (if found).
+ */
+
+path_query_response_t get_application_data_dir() {
+    path_query_response_t response;
+
+    path_query_response_t system_data_dir = get_system_data_dir();
+    if (system_data_dir.status_code == -2) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The path you requested depends on the system data directory, ",
+            "but we failed to get that path.");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    struct stat data_dir_st;
+    if (!(stat(response.path, &data_dir_st) == 0 &&
+            S_ISDIR(data_dir_st.st_mode))) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The path you requested depends on the system data directory, ",
+            "but seems that it does NOT exist on your system.");
+        free(system_data_dir.path);
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    char temp[MAX_PATH_LENGTH];
+    int written = snprintf(temp, sizeof(temp), "%s/%s",
+        system_data_dir.path, APPLICATION_NAME_LOWER);
+    free(system_data_dir.path);
+
+    if (written < 0 || written >= (int) sizeof(temp)) {
+        // While exceeding the max buffer size
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The generated application data directory path exceeds the ",
+            "MAX_PATH_LEN");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    struct stat app_data_dir_st;
+    if (!(stat(temp, &app_data_dir_st) == 0 &&
+            S_ISDIR(app_data_dir_st.st_mode))) {
+        if (mkdir(temp, 0755) != 0) {
+            write_log_with_tag(LOG_ERROR, "Path Handler",
+                "Error getting path",
+                "Failed to create the application data path.");
+            response.status_code = -2;
+            response.path = NULL;
+            free(temp);
+            return response;
+        }
+    }
+
+    response.path = duplicate_string(temp);
+    if (response.path == NULL) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+                "Error getting path",
+                "Failed to copy the application data path to response.");
+        response.status_code = -2;
+        return response;
+    }
+
+    response.status_code = 0;
+    return response;
+}
+
+
+/**
+ * @brief Get the system config directory path.
+ * 
+ * @details The function first gets @c XDG_CONFIG_HOME variable, and returns if
+ *          it is set. If not, it will try to get @c HOME variable and return
+ *          the path as @c HOME/.config if avaliable. If failed, then it
+ *          will return @c NULL in the path part.
+ * @note The function is actually returning a struct, not just a string.
+ * @see The struct @ref path_query_response_t defined in @ref path_handler.h
+ * @return (path_query_response_t) A struct containing status code and system
+ *                                 config directory path (if found).
+ */
+
+path_query_response_t get_system_config_dir() {
+    path_query_response_t response;
+    const char* xdg_config = getenv("XDG_CONFIG_HOME");
+    if (xdg_config != NULL) {
+        response.path = duplicate_string(xdg_config);
+        response.status_code = (response.path != NULL) ? 0 : -2;
+        return response;
+    } else {
+        const char* home_dir = getenv("HOME");
+        if (home_dir != NULL) {
+            char temp_path[MAX_PATH_LENGTH];
+            int written = snprintf(temp_path, sizeof(temp_path),
+                "%s/.config", home_dir);
+
+            if (written < 0 || written >= (int) sizeof(temp_path)) {
+                // While exceeding the max buffer size
+                write_log_with_tag(LOG_ERROR, "Path Handler",
+                    "Error getting path",
+                    "The generated system config directory path exceeds the ",
+                    "MAX_PATH_LEN");
+                response.status_code = -2;
+                response.path = NULL;
+                return response;
+            }
+
+            response.path = duplicate_string(temp_path);
+            if (response.path == NULL) {
+                response.status_code = -2;
+                return response;
+            }
+
+            response.status_code = -1;
+            return response;
+        } else {
+            response.status_code = -2;
+            response.path = NULL;
+            return response;
+        }
+    }
+}
+
+
+/**
+ * @brief Get the application config directory path.
+ * 
+ * @details The function first gets the system config directory path, then
+ *          appends the application name (to lower) to it and then checks the
+ *          existence of the path. If the path does not exist, it will try to
+ *          create it.
+ * @note If the path does NOT exist, but the system config directory is,
+ *       avaliable, then the function will try to create it.
+ * @return (path_query_response_t) A struct containing status code and 
+ *                                 application config directory path (if found)
+ */
+
+path_query_response_t get_application_config_dir() {
+    path_query_response_t response;
+
+    path_query_response_t system_config_dir = get_system_config_dir();
+    if (system_config_dir.status_code == -2) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The path you requested depends on the system config directory, ",
+            "but we failed to get that path.");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    struct stat config_dir_st;
+    if (!(stat(response.path, &config_dir_st) == 0 &&
+            S_ISDIR(config_dir_st.st_mode))) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The path you requested depends on the system config directory, ",
+            "but seems that it does NOT exist on your system.");
+        free(system_config_dir.path);
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    char temp[MAX_PATH_LENGTH];
+    int written = snprintf(temp, sizeof(temp), "%s/%s",
+        system_config_dir.path, APPLICATION_NAME_LOWER);
+    free(system_config_dir.path);
+
+    if (written < 0 || written >= (int) sizeof(temp)) {
+        // While exceeding the max buffer size
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The generated application config directory path exceeds the ",
+            "MAX_PATH_LEN");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    struct stat app_config_dir_st;
+    if (!(stat(temp, &app_config_dir_st) == 0 &&
+            S_ISDIR(app_config_dir_st.st_mode))) {
+        if (mkdir(temp, 0755) != 0) {
+            write_log_with_tag(LOG_ERROR, "Path Handler",
+                "Error getting path",
+                "Failed to create the application config path.");
+            response.status_code = -2;
+            response.path = NULL;
+            free(temp);
+            return response;
+        }
+    }
+
+    response.path = duplicate_string(temp);
+    if (response.path == NULL) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+                "Error getting path",
+                "Failed to copy the application config path to response.");
+        response.status_code = -2;
+        return response;
+    }
+
+    response.status_code = 0;
+    return response;
 }
