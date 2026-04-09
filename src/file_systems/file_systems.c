@@ -23,7 +23,9 @@
 int init_toller() {
     // Placeholder for future initialization code
     fprintf(stdout, "Initializing Toller file systems...\n");
-    path_query_response_t data_dir = get_system_data_dir();
+    path_query_response_t data_dir = get_application_data_dir();
     fprintf(stdout, "Data: %s.\n", data_dir.path);
+    path_query_response_t config_dir = get_application_config_dir();
+    fprintf(stdout, "Config: %s.\n", config_dir.path);
     return 0;
 }

@@ -84,7 +84,7 @@ path_query_response_t get_system_data_dir() {
                 // While exceeding the max buffer size
                 write_log_with_tag(LOG_ERROR, "Path Handler",
                     "Error getting path",
-                    "The generated system data directory path exceeds the ",
+                    "The generated system data directory path exceeds the "
                     "MAX_PATH_LEN");
                 response.status_code = -2;
                 response.path = NULL;
@@ -128,7 +128,7 @@ path_query_response_t get_application_data_dir() {
     if (system_data_dir.status_code == -2) {
         write_log_with_tag(LOG_ERROR, "Path Handler",
             "Error getting path",
-            "The path you requested depends on the system data directory, ",
+            "The path you requested depends on the system data directory, "
             "but we failed to get that path.");
         response.status_code = -2;
         response.path = NULL;
@@ -136,11 +136,11 @@ path_query_response_t get_application_data_dir() {
     }
 
     struct stat data_dir_st;
-    if (!(stat(response.path, &data_dir_st) == 0 &&
+    if (!(stat(system_data_dir.path, &data_dir_st) == 0 &&
             S_ISDIR(data_dir_st.st_mode))) {
         write_log_with_tag(LOG_ERROR, "Path Handler",
             "Error getting path",
-            "The path you requested depends on the system data directory, ",
+            "The path you requested depends on the system data directory, "
             "but seems that it does NOT exist on your system.");
         free(system_data_dir.path);
         response.status_code = -2;
@@ -157,7 +157,7 @@ path_query_response_t get_application_data_dir() {
         // While exceeding the max buffer size
         write_log_with_tag(LOG_ERROR, "Path Handler",
             "Error getting path",
-            "The generated application data directory path exceeds the ",
+            "The generated application data directory path exceeds the "
             "MAX_PATH_LEN");
         response.status_code = -2;
         response.path = NULL;
@@ -223,7 +223,7 @@ path_query_response_t get_system_config_dir() {
                 // While exceeding the max buffer size
                 write_log_with_tag(LOG_ERROR, "Path Handler",
                     "Error getting path",
-                    "The generated system config directory path exceeds the ",
+                    "The generated system config directory path exceeds the "
                     "MAX_PATH_LEN");
                 response.status_code = -2;
                 response.path = NULL;
@@ -267,7 +267,7 @@ path_query_response_t get_application_config_dir() {
     if (system_config_dir.status_code == -2) {
         write_log_with_tag(LOG_ERROR, "Path Handler",
             "Error getting path",
-            "The path you requested depends on the system config directory, ",
+            "The path you requested depends on the system config directory, "
             "but we failed to get that path.");
         response.status_code = -2;
         response.path = NULL;
@@ -275,11 +275,11 @@ path_query_response_t get_application_config_dir() {
     }
 
     struct stat config_dir_st;
-    if (!(stat(response.path, &config_dir_st) == 0 &&
+    if (!(stat(system_config_dir.path, &config_dir_st) == 0 &&
             S_ISDIR(config_dir_st.st_mode))) {
         write_log_with_tag(LOG_ERROR, "Path Handler",
             "Error getting path",
-            "The path you requested depends on the system config directory, ",
+            "The path you requested depends on the system config directory, "
             "but seems that it does NOT exist on your system.");
         free(system_config_dir.path);
         response.status_code = -2;
@@ -296,7 +296,7 @@ path_query_response_t get_application_config_dir() {
         // While exceeding the max buffer size
         write_log_with_tag(LOG_ERROR, "Path Handler",
             "Error getting path",
-            "The generated application config directory path exceeds the ",
+            "The generated application config directory path exceeds the "
             "MAX_PATH_LEN");
         response.status_code = -2;
         response.path = NULL;
