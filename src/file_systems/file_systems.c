@@ -17,15 +17,67 @@
 
 #include <stdio.h>
 
-#include "file_systems.h"
+#include "./file_systems.h"
 #include "../path_handler/path_handler.h"
+#include "../log/log.h"
 
 int init_toller() {
-    // Placeholder for future initialization code
-    fprintf(stdout, "Initializing Toller file systems...\n");
+    write_log_with_tag(LOG_INFO, "File Systems",
+        "Initialization",
+        "Initializing file systems and related directories...");
+
     path_query_response_t data_dir = get_application_data_dir();
-    fprintf(stdout, "Data: %s.\n", data_dir.path);
+    if (data_dir.status_code < 0) {
+        write_log_with_tag(LOG_ERROR, "File Systems",
+            "Initialization failed",
+            "Failed to create application data directory.");
+        return -1;
+    }
+
+    write_log_with_tag(LOG_OK, "File Systems",
+        "Initialization",
+        "Found data directory at: %s.", data_dir.path);
+
     path_query_response_t config_dir = get_application_config_dir();
-    fprintf(stdout, "Config: %s.\n", config_dir.path);
+    if (config_dir.status_code < 0) {
+        write_log_with_tag(LOG_ERROR, "File Systems",
+            "Initialization failed",
+            "Failed to create application config directory.");
+        return -1;
+    }
+
+    write_log_with_tag(LOG_OK, "File Systems",
+        "Initialization",
+        "Found config directory at: %s.", config_dir.path);
+
+    path_query_response_t package_installation_dir = get_package_install_dir();
+    if (package_installation_dir.status_code < 0) {
+        write_log_with_tag(LOG_ERROR, "File Systems",
+            "Initialization failed",
+            "Failed to create package installation directory.");
+        return -1;
+    }
+
+    write_log_with_tag(LOG_OK, "File Systems",
+        "Initialization",
+        "Found package installation directory at: %s.",
+        package_installation_dir.path);
+
+    path_query_response_t package_info_dir = get_package_info_dir();
+    if (package_info_dir.status_code < 0) {
+        write_log_with_tag(LOG_ERROR, "File Systems",
+            "Initialization failed",
+            "Failed to create package info directory.");
+        return -1;
+    }
+
+    write_log_with_tag(LOG_OK, "File Systems",
+        "Initialization",
+        "Found package info directory at: %s.",
+        package_info_dir.path);
+
+    write_log_with_tag(LOG_OK, "File Systems",
+        "Initialization",
+        "Initialization succeed!");
     return 0;
 }

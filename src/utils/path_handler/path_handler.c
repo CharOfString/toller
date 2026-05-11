@@ -173,7 +173,6 @@ path_query_response_t get_application_data_dir() {
                 "Failed to create the application data path.");
             response.status_code = -2;
             response.path = NULL;
-            free(temp);
             return response;
         }
     }
@@ -312,7 +311,6 @@ path_query_response_t get_application_config_dir() {
                 "Failed to create the application config path.");
             response.status_code = -2;
             response.path = NULL;
-            free(temp);
             return response;
         }
     }
@@ -322,6 +320,141 @@ path_query_response_t get_application_config_dir() {
         write_log_with_tag(LOG_ERROR, "Path Handler",
                 "Error getting path",
                 "Failed to copy the application config path to response.");
+        response.status_code = -2;
+        return response;
+    }
+
+    response.status_code = 0;
+    return response;
+}
+
+
+/**
+ * @brief Get the package installation dir object
+ * 
+ * @details The function first gets the data directory path, if succeed,
+ *          it appends @c /packages to it and then checks the existance
+ *          of the path generated. If the path does not exist, it will try
+ *          to create it.
+ * @note If app data directory does NOT exist, then the function will return
+ *       failure.
+ * @return (path_query_response_t) A struct containing status code and 
+ *                                 package installation path (if found).
+ */
+
+path_query_response_t get_package_install_dir() {
+    path_query_response_t response;
+
+    path_query_response_t app_data_dir = get_application_data_dir();
+    if (app_data_dir.status_code == -2) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The path you requested depends on the app data directory, "
+            "but we failed to get that path.");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    char package_install_dir[MAX_PATH_LENGTH];
+    int string_cat_result = snprintf(package_install_dir,
+        sizeof(package_install_dir), "%s/packages", app_data_dir.path);
+
+    if (string_cat_result < 0 || (size_t)string_cat_result >=
+            sizeof(package_install_dir)) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error concatenating string",
+            "The new package installation path exceeds MAX_PATH_LENGTH.");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    struct stat package_installation_dir_st;
+    if (!(stat(package_install_dir, &package_installation_dir_st) == 0 &&
+            S_ISDIR(package_installation_dir_st.st_mode))) {
+        if (mkdir(package_install_dir, 0755) != 0) {
+            write_log_with_tag(LOG_ERROR, "Path Handler",
+                "Error getting path",
+                "Failed to create the package installation path.");
+            response.status_code = -2;
+            response.path = NULL;
+            return response;
+        }
+    }
+
+    response.path = duplicate_string(package_install_dir);
+    if (response.path == NULL) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "Failed to copy the package installation path to response.");
+        response.status_code = -2;
+        return response;
+    }
+
+    response.status_code = 0;
+    return response;
+}
+
+/**
+ * @brief Get the package info dir object
+ * 
+ * @details The function first gets the data directory path, if succeed,
+ *          it appends @c /repo to it and then checks the existance
+ *          of the path generated. If the path does not exist, it will try
+ *          to create it.
+ * @note If app data directory does NOT exist, then the function will return
+ *       failure.
+ * @return (path_query_response_t) A struct containing status code and 
+ *                                 package info path (if found).
+ */
+
+path_query_response_t get_package_info_dir() {
+    path_query_response_t response;
+
+    path_query_response_t app_data_dir = get_application_data_dir();
+    if (app_data_dir.status_code == -2) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "The path you requested depends on the app data directory, "
+            "but we failed to get that path.");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    char package_info_dir[MAX_PATH_LENGTH];
+    int string_cat_result = snprintf(package_info_dir,
+        sizeof(package_info_dir), "%s/repo", app_data_dir.path);
+
+    if (string_cat_result < 0 || (size_t)string_cat_result >=
+            sizeof(package_info_dir)) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error concatenating string",
+            "The new package info path exceeds MAX_PATH_LENGTH.");
+        response.status_code = -2;
+        response.path = NULL;
+        return response;
+    }
+
+    struct stat package_info_dir_st;
+    if (!(stat(package_info_dir, &package_info_dir_st) == 0 &&
+            S_ISDIR(package_info_dir_st.st_mode))) {
+        if (mkdir(package_info_dir, 0755) != 0) {
+            write_log_with_tag(LOG_ERROR, "Path Handler",
+                "Error getting path",
+                "Failed to create the package info path.");
+            response.status_code = -2;
+            response.path = NULL;
+            return response;
+        }
+    }
+
+    response.path = duplicate_string(package_info_dir);
+    if (response.path == NULL) {
+        write_log_with_tag(LOG_ERROR, "Path Handler",
+            "Error getting path",
+            "Failed to copy the package info path to response.");
         response.status_code = -2;
         return response;
     }
