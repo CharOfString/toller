@@ -9,12 +9,19 @@ BIN_DIR := bin
 # Target executable
 TARGET := $(BIN_DIR)/toller
 
-# Source files - recursively find all .c files in SRC_DIR and subdirectories
+# Source files
 SOURCES := $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c $(SRC_DIR)/*/*/*.c)
 OBJECTS := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SOURCES))
 
+# Introduce cJson
+CJSON_CFLAGS := $(shell pkg-config --cflags libcjson)
+CJSON_LIBS := $(shell pkg-config --libs libcjson)
+
 # Include directories
-INCLUDES := -I$(SRC_DIR) -I$(SRC_DIR)/file_systems -I$(SRC_DIR)/utils/log
+INCLUDES := -I$(SRC_DIR) -I$(SRC_DIR)/file_systems -I$(SRC_DIR)/utils/log $(CJSON_CFLAGS)
+
+# Linker libraries
+LDLIBS := $(CJSON_LIBS)
 
 # Default target
 .PHONY: all
@@ -26,7 +33,7 @@ $(BUILD_DIR) $(BIN_DIR):
 
 # Link object files to create executable
 $(TARGET): $(OBJECTS) | $(BIN_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $^ $(LDLIBS)
 	@echo "Build complete: $@"
 
 # Compile source files

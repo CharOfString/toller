@@ -16,10 +16,25 @@
  */
 
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/stat.h>
 
 #include "./file_systems.h"
 #include "../path_handler/path_handler.h"
 #include "../log/log.h"
+
+/**
+ * @brief Initialize the file paths used by Toller.
+ * 
+ * @details This function determines the necessary directories for TOller.
+ *          If the directory does NOT exist then the function will try to
+ *          create it.
+ * 
+ * @see src/utils/path_handler/path_handler.h for details.
+ *
+ * @param (None)
+ * @return (int) @c 0 on success, @c -1 on failure.
+ */
 
 int init_toller() {
     write_log_with_tag(LOG_INFO, "File Systems",
@@ -80,4 +95,44 @@ int init_toller() {
         "Initialization",
         "Initialization succeed!");
     return 0;
+}
+
+
+/**
+ * @brief Check if a file exists.
+ * @details This function checks if a file exists at the specified path.
+ *          If @c create_if_not_exist is set to @c 1 and the file does NOT
+ *          exist, the function will try to create an empty file.
+ * @warning Ensure that the parent directory of the target file exists before
+ *          calling this function with @c create_if_not_exist set to @c 1, or
+ *          file creation will always fail!!
+ * 
+ * @param target (const char*) The path to the file to check.
+ * @param create_if_not_exist (const int) Whether to create the file if it does
+ *                                        not exist.
+ * @return (int) @c 0 if the file exists, @c -1 if it does not exist, and @c -2
+ *               on operation failure.
+ */
+
+int check_file_exist(const char* target, const int create_if_not_exist) {
+    // Check if file exists
+    if (access(target, F_OK) == 0) {
+        return 0;
+    }
+
+    if (create_if_not_exist) {
+        // Try to create the file
+        FILE* file = fopen(target, "w");
+        if (file != NULL) {
+            fclose(file);
+            return 0;
+        } else {
+            write_log_with_tag(LOG_ERROR, "File Systems",
+                "File creation failed",
+                "Failed to create file: %s.", target);
+            return -2;
+        }
+    }
+
+    return -1;
 }

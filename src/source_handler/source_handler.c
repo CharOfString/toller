@@ -15,10 +15,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifndef FILE_SYSTEMS_H
-#define FILE_SYSTEMS_H
+#include "./source_handler.h"
 
-int init_toller();
-int check_file_exist(const char* target, const int create_if_not_exist);
-
-#endif /* FILE_SYSTEMS_H */
+int validate_source(char* target) {
+    return -2;
+}
