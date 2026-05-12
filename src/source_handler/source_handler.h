@@ -18,6 +18,6 @@
 #ifndef SOURCE_HANDLER_H
 #define SOURCE_HANDLER_H
 
-int validate_source(char* target);
+int validate_source(char* target, int silently_fail);
 
 #endif /* SOURCE_HANDLER_H */

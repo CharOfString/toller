@@ -136,3 +136,27 @@ int check_file_exist(const char* target, const int create_if_not_exist) {
 
     return -1;
 }
+
+
+/**
+ * @brief Check if a directory exists.
+ * @details This function checks if a directory exists at the specified path.
+ *          If @c silently_fail is set to @c 1, then NO log will be printed.
+ * 
+ * @param target (const char*) The path to check.
+ * @param silently_fail (const int) Whether to fail silently.
+ * @return (int) @c 0 if the directory exists, @c -1 if it does not exist.
+ */
+
+int check_directory_exist(const char* target, const int silently_fail) {
+    if (access(target, F_OK) != 0) {
+        if (!silently_fail) {
+            write_log_with_tag(LOG_ERROR, "File Systems",
+                "Directory existence check",
+                "The directory %s does NOT exist.", target);
+        }
+        return -1;
+    }
+
+    return 0;
+}

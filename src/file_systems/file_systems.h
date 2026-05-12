@@ -20,5 +20,6 @@
 
 int init_toller();
 int check_file_exist(const char* target, const int create_if_not_exist);
+int check_directory_exist(const char* target, const int silently_fail);
 
 #endif /* FILE_SYSTEMS_H */
